@@ -2,133 +2,520 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href="https://fonts.cdnfonts.com/css/capture-it" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Maverick's Blog</title>
 
- 
-<style>
-    /* GLOBAL WEBSITE SETTINGS */
-  * {
-    font-family: 'Capture it', sans-serif;
-    box-sizing: border-box;
-    }
+    <!-- CAPTURE IT FONT -->
+    <link href="https://fonts.cdnfonts.com/css/capture-it"
+          rel="stylesheet">
 
-    body {
-        background-color: #f3f0e8;
-        color: #333;
-        margin: 0;
-    }
+    <!-- BODY FONT -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
 
-    /* TOP HEADER */
-    header {
-        background-color: #344638;
-        color: white;
-        padding: 50px 20px;
-        text-align: center;
-    }
+    <style>
 
-    header h1 {
-        font-size: 48px;
-        margin-bottom: 10px;
-    }
+        /* =========================
+           GENERAL SETTINGS
+        ========================= */
 
-    /* NAVIGATION BAR */
-    nav {
-        background-color: #26372b;
-        padding: 15px;
-        text-align: center;
-    }
+        * {
+            box-sizing: border-box;
+        }
 
-    nav a {
-        color: white;
-        text-decoration: none;
-        margin: 15px;
-        font-size: 16px;
-    }
+        :root {
+            --forest: #263829;
+            --deep-green: #17271c;
+            --olive: #505c3b;
+            --khaki: #c3b58e;
+            --paper: #e8dfcb;
+            --dark-paper: #d8ccb3;
+            --ink: #292820;
+            --muted: #77715f;
+        }
 
-    /* MAIN CONTENT */
-    main {
-        max-width: 900px;
-        margin: 40px auto;
-        padding: 20px;
-    }
+        body {
+            margin: 0;
+            background-color: var(--paper);
+            color: var(--ink);
+            font-family: 'Roboto Condensed', sans-serif;
+        }
 
-    /* HOBBY CARDS */
-    .hobby {
-        background: white;
-        padding: 25px;
-        margin: 20px 0;
-        border-radius: 8px;
-    }
 
-    /* FOOTER */
-    footer {
-        text-align: center;
-        padding: 30px;
-        color: #666;
-    }
-</style>
+        /* =========================
+           PERMANENT SIDEBAR
+        ========================= */
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 245px;
+            height: 100vh;
+            background-color: var(--deep-green);
+            color: var(--paper);
+            padding: 30px 20px;
+            overflow-y: auto;
+            z-index: 1000;
+            border-right: 4px solid #101b13;
+        }
+
+        .sidebar-title {
+            font-family: 'Capture it', serif;
+            font-size: 25px;
+            letter-spacing: 3px;
+            text-align: center;
+            color: var(--khaki);
+            margin-bottom: 8px;
+        }
+
+        .sidebar-divider {
+            border: none;
+            border-top: 1px solid #59634c;
+            margin: 25px 0;
+        }
+
+        .nav-label {
+            font-size: 11px;
+            letter-spacing: 3px;
+            color: #a59d7e;
+            margin: 22px 0 12px;
+            text-transform: uppercase;
+        }
+
+        .sidebar nav a {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 12px 10px;
+            margin: 5px 0;
+            color: #e8dfcb;
+            text-decoration: none;
+            font-size: 17px;
+            letter-spacing: 1px;
+            border-left: 3px solid transparent;
+            transition: 0.2s;
+        }
+
+        .sidebar nav a:hover,
+        .sidebar nav a.active {
+            background-color: #354634;
+            border-left: 3px solid var(--khaki);
+            color: white;
+        }
+
+        .sidebar nav img {
+            width: 25px;
+            height: 25px;
+            object-fit: contain;
+        }
+
+
+        /* =========================
+           MAIN WEBSITE AREA
+        ========================= */
+
+        .main-content {
+            margin-left: 245px;
+            min-height: 100vh;
+        }
+
+
+        /* =========================
+           FOREST BANNER
+        ========================= */
+
+        .banner {
+            height: 340px;
+            background-image:
+                linear-gradient(
+                    rgba(15, 27, 17, 0.35),
+                    rgba(15, 27, 17, 0.55)
+                ),
+                url('images/forest-banner.jpg');
+
+            background-size: cover;
+            background-position: center 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border-bottom: 7px solid var(--forest);
+        }
+
+        .banner h1 {
+            font-family: 'Capture it', serif;
+            font-size: clamp(48px, 7vw, 100px);
+            letter-spacing: 14px;
+            color: #e9dfc8;
+            text-shadow: 3px 4px 8px #111;
+            margin: 0;
+            padding-left: 14px;
+        }
+
+
+        /* =========================
+           PAGE CONTENT
+        ========================= */
+
+        .content {
+            max-width: 1100px;
+            margin: auto;
+            padding: 55px 55px;
+        }
+
+        .page-section {
+            display: none;
+            animation: fadeIn 0.35s ease;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-heading {
+            font-family: 'Capture it', serif;
+            font-size: 38px;
+            letter-spacing: 4px;
+            color: var(--forest);
+            border-bottom: 3px solid var(--olive);
+            padding-bottom: 12px;
+            margin-top: 0;
+        }
+
+        .section-text {
+            font-size: 18px;
+            line-height: 1.8;
+            max-width: 850px;
+        }
+
+
+        /* =========================
+           CONTENT CARDS
+        ========================= */
+
+        .card {
+            background-color: #f2ebdc;
+            border: 1px solid #c9bea7;
+            border-left: 5px solid var(--olive);
+            padding: 25px;
+            margin: 25px 0;
+            box-shadow: 3px 4px 8px rgba(0,0,0,0.08);
+        }
+
+        .card h3 {
+            font-family: 'Capture it', serif;
+            font-size: 25px;
+            letter-spacing: 2px;
+            color: var(--forest);
+            margin-top: 0;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background-color: var(--deep-green);
+            color: var(--khaki);
+            padding: 25px;
+            text-align: center;
+            font-size: 13px;
+            letter-spacing: 2px;
+            margin-top: 60px;
+        }
+
+
+        /* =========================
+           SMALLER SCREENS
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            .sidebar {
+                width: 170px;
+                padding: 20px 10px;
+            }
+
+            .sidebar-title {
+                font-size: 19px;
+            }
+
+            .sidebar nav a {
+                font-size: 14px;
+                gap: 8px;
+            }
+
+            .sidebar nav img {
+                width: 20px;
+                height: 20px;
+            }
+
+            .main-content {
+                margin-left: 170px;
+            }
+
+            .banner {
+                height: 240px;
+            }
+
+            .banner h1 {
+                font-size: 38px;
+                letter-spacing: 5px;
+            }
+
+            .content {
+                padding: 30px 20px;
+            }
+
+            .section-heading {
+                font-size: 27px;
+            }
+        }
+
+    </style>
 </head>
+
 
 <body>
 
-    <header>
-        <h1>Maverick's Blog</h1>
-        <p>A collection of things I love doing.</p>
-    </header>
+    <!-- =========================
+         SIDEBAR NAVIGATION
+    ========================= -->
 
-    <nav>
-        <a href="#about">About</a>
-        <a href="#hobbies">My Hobbies</a>
-        <a href="#projects">Projects</a>
-    </nav>
+    <aside class="sidebar">
 
-    <main>
+        <div class="sidebar-title">
+            Maverick's Blog
+        </div>
 
-        <section id="about">
-            <h2>Welcome!</h2>
-            <p>
-                This is my personal corner of the internet.
-                Here I document my interests, projects,
-                experiences, and things I learn along the way.
-            </p>
-        </section>
+        <hr class="sidebar-divider">
 
-        <section id="hobbies">
-            <h2>My Hobbies</h2>
+        <div class="nav-label">Navigation</div>
 
-            <div class="hobby">
-                <h3>Ham Radio</h3>
-                <p>Documenting radio experiments, equipment,
-                contacts, and projects.</p>
-            </div>
+        <nav>
 
-            <div class="hobby">
-                <h3>Vintage Trucks</h3>
-                <p>My interest in classic Chevrolet and GMC
-                trucks, restoration, and automotive history.</p>
-            </div>
+            <a href="#home" class="active" onclick="showPage('home', this)">
+                <img src="images/icons/home.png" alt="">
+                Home
+            </a>
 
-            <div class="hobby">
-                <h3>Photography</h3>
-                <p>A collection of photographs and adventures.</p>
-            </div>
+            <div class="nav-label">Interests</div>
 
-        </section>
+            <a href="#radio" onclick="showPage('radio', this)">
+                <img src="images/icons/radio.png" alt="">
+                Ham Radio
+            </a>
 
-        <section id="projects">
-            <h2>Current Projects</h2>
-            <p>More projects coming soon!</p>
-        </section>
+            <a href="#trucks" onclick="showPage('trucks', this)">
+                <img src="images/icons/truck.png" alt="">
+                Vintage Trucks
+            </a>
 
-    </main>
+            <a href="#photography" onclick="showPage('photography', this)">
+                <img src="images/icons/camera.png" alt="">
+                Photography
+            </a>
 
-    <footer>
-        <p>Made by me | 2026</p>
-    </footer>
+            <a href="#outdoors" onclick="showPage('outdoors', this)">
+                <img src="images/icons/outdoors.png" alt="">
+                Outdoors
+            </a>
+
+            <div class="nav-label">Other</div>
+
+            <a href="#projects" onclick="showPage('projects', this)">
+                <img src="images/icons/projects.png" alt="">
+                Projects
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================= -->
+
+    <div class="main-content">
+
+        <!-- FOREST BANNER -->
+
+        <header class="banner">
+            <h1>KILO ECHO FIVE</h1>
+        </header>
+
+
+        <main class="content">
+
+
+            <!-- HOME PAGE -->
+
+            <section id="home" class="page-section active">
+
+                <h2 class="section-heading">Welcome</h2>
+
+                <p class="section-text">
+                    Welcome to my personal corner of the internet.
+                    This website is a collection of my interests,
+                    hobbies, projects, experiences, and things
+                    I learn along the way.
+                </p>
+
+                <div class="card">
+                    <h3>About This Website</h3>
+                    <p class="section-text">
+                        A personal archive documenting the things
+                        I enjoy, the projects I work on, and the
+                        experiences worth remembering.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>Current Interests</h3>
+                    <p class="section-text">
+                        Ham radio, vintage trucks, photography,
+                        outdoor exploration, and various personal
+                        projects.
+                    </p>
+                </div>
+
+            </section>
+
+
+            <!-- HAM RADIO -->
+
+            <section id="radio" class="page-section">
+
+                <h2 class="section-heading">Ham Radio</h2>
+
+                <p class="section-text">
+                    A collection of radio equipment, experiments,
+                    contacts, and amateur radio projects.
+                </p>
+
+            </section>
+
+
+            <!-- VINTAGE TRUCKS -->
+
+            <section id="trucks" class="page-section">
+
+                <h2 class="section-heading">Vintage Trucks</h2>
+
+                <p class="section-text">
+                    Documenting classic Chevrolet and GMC trucks,
+                    restoration, maintenance, automotive history,
+                    and adventures.
+                </p>
+
+            </section>
+
+
+            <!-- PHOTOGRAPHY -->
+
+            <section id="photography" class="page-section">
+
+                <h2 class="section-heading">Photography</h2>
+
+                <p class="section-text">
+                    A collection of photographs, memories,
+                    landscapes, and adventures.
+                </p>
+
+            </section>
+
+
+            <!-- OUTDOORS -->
+
+            <section id="outdoors" class="page-section">
+
+                <h2 class="section-heading">Outdoors</h2>
+
+                <p class="section-text">
+                    Outdoor exploration, camping, hiking,
+                    travel, and time spent outside.
+                </p>
+
+            </section>
+
+
+            <!-- PROJECTS -->
+
+            <section id="projects" class="page-section">
+
+                <h2 class="section-heading">Projects</h2>
+
+                <p class="section-text">
+                    A running archive of personal projects,
+                    experiments, and things currently in progress.
+                </p>
+
+            </section>
+
+
+        </main>
+
+
+        <footer>
+            MAVERICK'S BLOG | PERSONAL ARCHIVE
+        </footer>
+
+    </div>
+
+
+    <!-- =========================
+         PAGE NAVIGATION SCRIPT
+    ========================= -->
+
+    <script>
+
+        function showPage(pageId, clickedLink) {
+
+            // Hide every page
+            document.querySelectorAll('.page-section')
+                .forEach(page => {
+                    page.classList.remove('active');
+                });
+
+            // Show the selected page
+            document.getElementById(pageId)
+                .classList.add('active');
+
+            // Remove active status from all links
+            document.querySelectorAll('.sidebar nav a')
+                .forEach(link => {
+                    link.classList.remove('active');
+                });
+
+            // Highlight selected link
+            clickedLink.classList.add('active');
+
+            // Update browser URL
+            history.replaceState(null, '', '#' + pageId);
+
+            // Return to top of content
+            window.scrollTo(0, 0);
+        }
+
+    </script>
 
 </body>
 </html>
+
