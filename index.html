@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Maverick's Blog</title>
+    <title>MAVERICK'S BLOG</title>
 
     <!-- MILITARY-STYLE FONT -->
     <link href="https://fonts.cdnfonts.com/css/capture-it" rel="stylesheet">
@@ -59,14 +59,27 @@
             border-right: 4px solid var(--deep-brown);
         }
 
+        /* CLICKABLE SIDEBAR TITLE */
+
         .sidebar-title {
+            display: block;
             font-family: 'Capture it', serif;
-            font-size: 25px;
-            letter-spacing: 3px;
+            font-size: 34px;
+            letter-spacing: 4px;
             text-align: center;
             color: var(--tan);
+            text-decoration: none;
             margin-bottom: 28px;
+            cursor: pointer;
+            transition: color 0.2s;
         }
+
+        .sidebar-title:hover {
+            color: var(--parchment);
+        }
+
+
+        /* SIDEBAR NAVIGATION */
 
         .sidebar nav a {
             display: flex;
@@ -223,7 +236,8 @@
             }
 
             .sidebar-title {
-                font-size: 19px;
+                font-size: 24px;
+                letter-spacing: 2px;
             }
 
             .sidebar nav a {
@@ -270,13 +284,20 @@
 
     <aside class="sidebar">
 
-        <div class="sidebar-title">
+        <!-- CLICKING KE5OTE RETURNS HOME -->
+
+        <a href="#home"
+           class="sidebar-title"
+           onclick="showPage('home', this)">
             KE5OTE
-        </div>
+        </a>
+
+
+        <!-- SIDEBAR CATEGORIES -->
 
         <nav>
 
-            <a href="#radio" class="active" onclick="showPage('radio', this)">
+            <a href="#radio" onclick="showPage('radio', this)">
                 <img src="yaesu_radio.png" alt="">
                 Amateur Radio
             </a>
@@ -323,16 +344,36 @@
     <div class="main-content">
 
         <header class="banner">
-            <h1>MAVERICK'S BLOG</h1>
+            <h1>KE5OTE</h1>
         </header>
 
 
         <main class="content">
 
 
+            <!-- HOME PAGE -->
+
+            <section id="home" class="page-section active">
+
+                <h2 class="section-heading">Welcome</h2>
+
+                <p class="section-text">
+                    Welcome to KE5OTE, a personal archive of
+                    interests, projects, collections, and things
+                    worth documenting.
+
+                    <br><br>
+
+                    Explore the categories on the left to see
+                    what I'm working on.
+                </p>
+
+            </section>
+
+
             <!-- AMATEUR RADIO -->
 
-            <section id="radio" class="page-section active">
+            <section id="radio" class="page-section">
 
                 <h2 class="section-heading">Amateur Radio</h2>
 
@@ -453,14 +494,16 @@
             document.getElementById(pageId)
                 .classList.add('active');
 
-            // Remove active status from all links
+            // Remove active status from category links
             document.querySelectorAll('.sidebar nav a')
                 .forEach(link => {
                     link.classList.remove('active');
                 });
 
-            // Highlight selected link
-            clickedLink.classList.add('active');
+            // Highlight selected category, if applicable
+            if (clickedLink.closest('nav')) {
+                clickedLink.classList.add('active');
+            }
 
             // Update browser URL
             history.replaceState(null, '', '#' + pageId);
