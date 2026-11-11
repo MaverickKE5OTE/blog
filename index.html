@@ -59,25 +59,6 @@
             border-right: 4px solid var(--deep-brown);
         }
 
-        /* CLICKABLE SIDEBAR TITLE */
-
-        .sidebar-title {
-            display: block;
-            font-family: 'Capture it', serif;
-            font-size: 34px;
-            letter-spacing: 4px;
-            text-align: center;
-            color: var(--tan);
-            text-decoration: none;
-            margin-bottom: 28px;
-            cursor: pointer;
-            transition: color 0.2s;
-        }
-
-        .sidebar-title:hover {
-            color: var(--parchment);
-        }
-
 
         /* SIDEBAR NAVIGATION */
 
@@ -200,14 +181,15 @@
             max-width: 850px;
             margin-top: 0;
         }
+
         .home-image {
-    display: block;
-    width: 100%;
-    max-width: 750px;
-    height: auto;
-    margin-top: 25px;
-    border: 1px solid var(--tobacco);
-}
+            display: block;
+            width: 100%;
+            max-width: 750px;
+            height: auto;
+            margin-top: 25px;
+            border: 1px solid var(--tobacco);
+        }
 
 
         /* =========================
@@ -241,11 +223,6 @@
             .sidebar {
                 width: 170px;
                 padding: 20px 10px;
-            }
-
-            .sidebar-title {
-                font-size: 24px;
-                letter-spacing: 2px;
             }
 
             .sidebar nav a {
@@ -292,52 +269,65 @@
 
     <aside class="sidebar">
 
-        <!-- CLICKING KE5OTE RETURNS HOME -->
-
-        <a href="#home"
-           class="sidebar-title"
-           onclick="showPage('home', this)">
-            KE5OTE
-        </a>
-
-
         <!-- SIDEBAR CATEGORIES -->
 
         <nav>
+
+            <!-- HOME TAB -->
+
+            <a href="#home"
+               class="active"
+               onclick="showPage('home', this)">
+                <img src="silver_star.png" alt="">
+                Home
+            </a>
+
+
+            <!-- AMATEUR RADIO -->
 
             <a href="#radio" onclick="showPage('radio', this)">
                 <img src="yaesu_radio.png" alt="">
                 Amateur Radio
             </a>
 
+
+            <!-- CHEVROLET TRUCKS -->
+
             <a href="#trucks" onclick="showPage('trucks', this)">
                 <img src="vintage_wrench.png" alt="">
                 Chevrolet Trucks
             </a>
+
+
+            <!-- BONES AND PELTS -->
 
             <a href="#bones" onclick="showPage('bones', this)">
                 <img src="coyote_skull.png" alt="">
                 Bones and Pelts
             </a>
 
+
+            <!-- CONSTRUCTION -->
+
             <a href="#construction" onclick="showPage('construction', this)">
                 <img src="handsaw.png" alt="">
                 Construction
             </a>
+
+
+            <!-- SEWING AND CRAFTS -->
 
             <a href="#sewing" onclick="showPage('sewing', this)">
                 <img src="thread_spool_and_needle.png" alt="">
                 Sewing and Crafts
             </a>
 
+
+            <!-- INDUSTRIAL AND COUNTRY -->
+
             <a href="#industrial" onclick="showPage('industrial', this)">
                 <img src="guitar_pick.png" alt="">
                 Industrial and Country
-            </a>
-
-            <a href="#upcoming" onclick="showPage('upcoming', this)">
-                <img src="silver_star.png" alt="">
-                Upcoming
             </a>
 
         </nav>
@@ -368,14 +358,15 @@
                 <p class="section-text">
                     Welcome to Maverick's Blog (KE5OTE), a compilation of things I do in my free time for what I love. Take a look at my
                     Ham radio shed, various sewing projects, 1984 Chevrolet K5 Blazer, or the skeletons I clean on the weekends.
-                    
                 </p>
-              <img src="coffee.png"
-         alt="Homepage photograph"
-         class="home-image">
-                
+
+                <img src="coffee.png"
+                     alt="Homepage photograph"
+                     class="home-image">
+
                 <p class="section-text">
                     I don't update often
+                </p>
 
             </section>
 
@@ -466,20 +457,6 @@
             </section>
 
 
-            <!-- UPCOMING -->
-
-            <section id="upcoming" class="page-section">
-
-                <h2 class="section-heading">Upcoming</h2>
-
-                <p class="section-text">
-                    A running list of future projects, plans,
-                    ideas, experiments, and things to look forward to.
-                </p>
-
-            </section>
-
-
         </main>
 
     </div>
@@ -509,10 +486,8 @@
                     link.classList.remove('active');
                 });
 
-            // Highlight selected category, if applicable
-            if (clickedLink.closest('nav')) {
-                clickedLink.classList.add('active');
-            }
+            // Highlight selected category
+            clickedLink.classList.add('active');
 
             // Update browser URL
             history.replaceState(null, '', '#' + pageId);
