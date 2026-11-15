@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -88,6 +87,24 @@
             width: 25px;
             height: 25px;
             object-fit: contain;
+        }
+
+        /* SUB-PAGES UNDER A SIDEBAR CATEGORY */
+
+        .sidebar nav a.sidebar-sub-link {
+            display: block;
+            font-size: 14px;
+            line-height: 1.35;
+            padding: 8px 10px 8px 48px;
+            margin: 0 0 5px;
+            color: var(--tan);
+            border-left: 3px solid transparent;
+        }
+
+        .sidebar nav a.sidebar-sub-link:hover {
+            background-color: var(--deep-brown);
+            border-left: 3px solid var(--tan);
+            color: white;
         }
 
 
@@ -317,9 +334,14 @@
 
             <!-- SEWING AND CRAFTS -->
 
-            <a href="#sewing" onclick="showPage('sewing', this)">
+            <a href="#sewing" id="sewing-tab" onclick="showPage('sewing', this)">
                 <img src="thread_spool_and_needle.png" alt="">
                 Sewing and Crafts
+            </a>
+
+            <a href="#pants" class="sidebar-sub-link"
+               onclick="showPage('pants', document.getElementById('sewing-tab'))">
+                Making my favorite 30 year old pair of pants last 30 more years
             </a>
 
 
@@ -498,9 +520,49 @@
                     mending techniques, band tees, art, and my fursuit partial. This also serves as a link to my furry commission
                     slots if you're interested.
                 </p>
-            <p class="section-text"> image coming soon! </p>
+
+                <p class="section-text">image coming soon!</p>
+
                 <p>
-                    <strong>links to specific pages:</strong>
+                    <strong>Links to specific pages:</strong>
+                </p>
+                <ul>
+                    <li>
+                        <a href="#pants"
+                           onclick="showPage('pants', document.getElementById('sewing-tab'))">
+                            Making my favorite 30 year old pair of pants last 30 more years
+                        </a>
+                    </li>
+                </ul>
+
+            </section>
+
+
+            <!-- PANTS REPAIR PROJECT -->
+
+            <section id="pants" class="page-section">
+
+                <h2 class="section-heading">Making my favorite 30 year old pair of pants last 30 more years</h2>
+
+                <p class="section-text">
+                    A documentation of repairing, maintaining, and preserving my favorite pair of pants.
+                    Rather than throwing away a well-loved garment, the goal is to keep it wearable for
+                    another thirty years.
+                </p>
+
+                <p class="section-text">
+                    <strong>Project documentation:</strong>
+                </p>
+
+                <p class="section-text">
+                    More details, photographs, materials, and repair instructions coming soon!
+                </p>
+
+                <p>
+                    <a href="#sewing"
+                       onclick="showPage('sewing', document.getElementById('sewing-tab'))">
+                        &larr; Back to Sewing and Crafts
+                    </a>
                 </p>
 
             </section>
